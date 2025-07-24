@@ -1,0 +1,106 @@
+
+.WHG{
+    margin-top: 240px;
+    margin-bottom: 240px;
+}
+
+/* Top selling plants */
+/* .background {
+    background-image: url('public/Images/bmw.jpg');
+}
+
+.navbar-brand {
+    width: 4vw;
+}
+
+.navbar-brand .logo-container img {
+    max-width: 100%;
+} */
+/* all sections */
+
+p {
+    color: var(--bs-secondary);
+}
+
+.btn-transparent {
+    background-color: transparent;
+    border: none;
+    outline: transparent;
+}
+
+.navbar-brand {
+    width: 4vw;
+}
+.navbar-brand .logo-container img {
+    max-width: 100%;
+}
+.content {padding-top: 90px;
+}
+
+/* all sections */
+
+.section-md {
+    padding: 70px 0;
+}
+
+section img {
+    max-width: 100%;
+}
+
+.row {
+    width: 100%;
+}
+
+i {
+    color: var(--bs-success) !important;
+}
+
+a i {
+    color: var(--bs-success) !important;
+}
+
+/* Top selling plants */
+.background {
+  background-image: url('public/images/bmw.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card {
+    overflow: auto;
+    border-radius: 5% !important;
+    border: 1px solid var(--bs-primary) !important;
+    transition: 0.4s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px 0 var(--bs-success) !important;
+    transform: translateY(-15px);
+}
+
+.img {
+    width: 200px;
+}
+
+.intro-img img {
+    max-width: 100%;
+}
+
+.footer-main-nav .nav-link {
+    color: black;
+}
+
+.imge img {
+    max-width: 100%;
+}
+
+.image img {
+    max-width: 100%;
+    box-shadow: 0 0 30px 0 lightgreen;
+}
+
+
+
+
+
