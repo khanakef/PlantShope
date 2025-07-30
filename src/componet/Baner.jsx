@@ -27,13 +27,34 @@ const Baner = () => {
                     </div>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src="public/Images/bmw.jpg" className="d-block w-100" alt="..." />
+                            <video
+                                className="d-block w-100"
+                                src="/Images/3805774-hd_1920_1080_25fps.mp4"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                            ></video>
+                            <div className="carousel-caption text-dark">
+                                <h1>
+                                    Rooted in Nature, Grown with Love."
+                                    "From Our Garden to Your Home.
+                                </h1>
+                            </div>
                         </div>
                         <div className="carousel-item">
-                            <img src="public/Images/download.jpeg" className="d-block w-100" alt="..." />
+                            <img
+                                src="/Images/pexels-saijanani-selvarajan-759261681-33143925.jpg"
+                                className="d-block w-100"
+                                alt="..."
+                            />
                         </div>
                         <div className="carousel-item">
-                            <img src="public/Images/download.jpeg" className="d-block w-100" alt="..." />
+                            <img
+                                src="/Images/pexels-fotios-photos-1090638.jpg"
+                                className="d-block w-100"
+                                alt="..."
+                            />
                         </div>
                     </div>
                     <button

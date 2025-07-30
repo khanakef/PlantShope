@@ -2,11 +2,9 @@ const Facilities = ()=>{
     return(
         <>
         <section className="section-md">
-            <div className="row justify-content-evenly w-100 mt-5 bg-light">
+            <div className="row justify-content-evenly w-100 mt-5">
               <div
                 className="col-sm-12 col-md-3 text-center"
-                data-aos="zoom-out"
-                data-aos-duration={1000}
               >
                 <h1>
                   <i className="fa-solid fa-wallet" />
@@ -19,8 +17,6 @@ const Facilities = ()=>{
               </div>
               <div
                 className="col-sm-12 col-md-3 text-center"
-                // data-aos="zoom-out"
-                // data-aos-duration={1000}
               >
                 <h1>
                   <i className="fa-solid fa-truck" />
@@ -30,8 +26,6 @@ const Facilities = ()=>{
               </div>
               <div
                 className="col-sm-12 col-md-3 text-center "
-                // data-aos="zoom-out"
-                // data-aos-duration={1000}
               >
                 <h1>
                   <i className="fa-solid fa-repeat" />

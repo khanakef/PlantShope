@@ -4,8 +4,6 @@ const Footer = () =>{
             <>
   <footer
     className=" bg-dark-subtle py-5"
-    data-aos="zoom-in-up"
-    data-aos-duration={1000}
   >
     <div className="container">
       <div className=" footer-wrapper row justify-content-evenly">
@@ -81,7 +79,7 @@ const Footer = () =>{
                 style={{ fontSize: "1.2rem" }}
               />
             </div>
-            <p className="col">
+            <p className="col text-dark">
               Kat Kat Gate , New S.T Colony Aurangabad, <br />
               Maharashtra 431001.
             </p>
@@ -91,7 +89,7 @@ const Footer = () =>{
               <i className="fa-regular fa-envelope" />
             </div>
             <div className="col-10 px-0">
-              <p className="my-0">Drop Us a Line</p>
+              <p className="my-0 text-dark">Drop Us a Line</p>
               <h6 className="text-white my-0">
                 <a href="mailto:info@example.com">info@example.com</a>
               </h6>
@@ -102,7 +100,7 @@ const Footer = () =>{
               <i className="fa-solid fa-phone" />
             </div>
             <div className="col-10 px-0">
-              <p className="my-0">Call Us Now</p>
+              <p className="my-0 text-dark">Call Us Now</p>
               <h6 className="text-white my-0">
                 <a href="#">+91 9422577039</a> , <br />{" "}
                 <a href="#">+91 9373777087</a>
@@ -114,7 +112,7 @@ const Footer = () =>{
     </div>
   </footer>
   {/* offcanvas */}
-  <div
+  {/* <div
     className="offcanvas offcanvas-end"
     tabIndex={-1}
     id="offcanvasExample"
@@ -135,7 +133,7 @@ const Footer = () =>{
       <h2 className="empty text-center">Your Cart is Empty</h2>
       <div className="cart"></div>
     </div>
-  </div>
+  </div> */}
 </>
 
         </>
