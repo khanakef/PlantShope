@@ -1,40 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './componet/Header'
-import Baner from './componet/Baner'
-import Facilities from './componet/Facilities'
-import Cards from './componet/Cards'
-import Blogs from './componet/Blogs'
-import Footer from './componet/Footer'
+import './App.css';
+import Header from './componet/Header';
+import Baner from './componet/Baner';
+import Facilities from './componet/Facilities';
+import Cards from './componet/Cards';
+import PlansList from './componet/PlansList';
+import Blogs from './componet/Blogs';
+import Footer from './componet/Footer';
+import CartSidebar from './componet/Cartsidebar';
 import './componet/style.css';
-import CartSidebar from './componet/Cartsidebar'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function App({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) {
   return (
     <>
-    
-      <Header/>
-
-      <CartSidebar/>
+      <Header toggleCart={toggleCart} />
+      <CartSidebar
+        isOpen={isCartOpen}
+        toggleCart={toggleCart}
+        cartItems={cartItems}
+        clearCart={clearCart}
+      />
+      <Baner />
+      <Facilities />
+      <Cards addToCart={addToCart} />
       
-      <Baner/>
-
-      <Facilities/>
-
-      <Cards/>
-      
-      <div id='blog'>
-        <Blogs />
-      </div>
-      
-      <Footer/>
-      
+      <Blogs />
+      <Footer />
     </>
-  )
+  );
 }
-
 export default App;

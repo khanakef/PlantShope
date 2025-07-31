@@ -1,13 +1,6 @@
-import React, { useState } from "react";
-import CartSidebar from "./Cartsidebar.jsx";
+import React from "react";
 
-const Header = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
-
+const Header = ({ toggleCart }) => {
   return (
     <>
       <header>
@@ -38,24 +31,16 @@ const Header = () => {
             >
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/">
-                    Home
-                  </a>
+                  <a className="nav-link" href="/">Home</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/shop">
-                    Shop
-                  </a>
+                  <a className="nav-link" href="/shop">Shop</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#blog">
-                    Blog
-                  </a>
+                  <a className="nav-link" href="#blog">Blog</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Contact
-                  </a>
+                  <a className="nav-link" href="#">Contact</a>
                 </li>
               </ul>
 
@@ -67,10 +52,7 @@ const Header = () => {
                   type="button"
                   onClick={toggleCart}
                 >
-                  <i
-                    className="fa-solid fa-cart-shopping"
-                    style={{ fontSize: 25 }}
-                  />
+                  <i className="fa-solid fa-cart-shopping" style={{ fontSize: 25 }} />
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     0
                     <span className="visually-hidden">unread messages</span>
@@ -81,9 +63,6 @@ const Header = () => {
           </div>
         </nav>
       </header>
-
-      {/* 👉 Include CartSidebar component here and control visibility */}
-      <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
     </>
   );
 };
