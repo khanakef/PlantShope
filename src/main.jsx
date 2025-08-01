@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import App from './App.jsx';
 import Shop from './page/Shop.jsx';
-import Blogs from './componet/Blogs.jsx';
+import Blog from'./page/Blog.jsx'
+import Contact from './page/Contact.jsx';
 
 function MainApp() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -57,7 +58,23 @@ function MainApp() {
             />
           }
         />
-        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/Blog" element={<Blog 
+        toggleCart={toggleCart}
+              isCartOpen={isCartOpen}
+              cartItems={cartItems}
+              addToCart={addToCart}
+              clearCart={clearCart}
+
+         />} />
+
+         <Route path="/Contact" element={<Contact 
+        toggleCart={toggleCart}
+              isCartOpen={isCartOpen}
+              cartItems={cartItems}
+              addToCart={addToCart}
+              clearCart={clearCart}
+
+         />} />
       </Routes>
     </Router>
   );

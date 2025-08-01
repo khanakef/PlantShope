@@ -1,10 +1,10 @@
-import Baner from "../componet/Baner";
-import Facilities from "../componet/Facilities";
-import Footer from "../componet/Footer";
-import Header from "../componet/Header";
-import PlansList from "../componet/PlansList";
-import ShopBaner from "../componet/ShopBaner";
-import CartSidebar from "../componet/Cartsidebar";
+
+import Facilities from "../component/Facilities";
+import Footer from "../component/Footer";
+import Header from "../component/Header";
+import PlansList from "../component/PlansList";
+import ShopBaner from "../component/ShopBaner";
+import CartSidebar from "../component/Cartsidebar";
 
 const Shop = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) => {
   return (
@@ -16,6 +16,7 @@ const Shop = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) => {
         cartItems={cartItems}
         clearCart={clearCart}
       />
+      <ShopBaner/>
       <Facilities />
       <PlansList addToCart={addToCart} />
       <Footer />

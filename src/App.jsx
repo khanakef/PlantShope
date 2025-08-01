@@ -1,13 +1,12 @@
 import './App.css';
-import Header from './componet/Header';
-import Baner from './componet/Baner';
-import Facilities from './componet/Facilities';
-import Cards from './componet/Cards';
-import PlansList from './componet/PlansList';
-import Blogs from './componet/Blogs';
-import Footer from './componet/Footer';
-import CartSidebar from './componet/Cartsidebar';
-import './componet/style.css';
+import Header from './component/Header';
+import Banner from './component/Banner';
+import Facilities from './component/Facilities';
+import Cards from './component/Cards';
+import Blogs from './component/Blogs';
+import Footer from './component/Footer';
+import CartSidebar from './component/Cartsidebar';
+import './component/style.css';
 
 function App({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) {
   return (
@@ -19,7 +18,7 @@ function App({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) {
         cartItems={cartItems}
         clearCart={clearCart}
       />
-      <Baner />
+      <Banner />
       <Facilities />
       <Cards addToCart={addToCart} />
       
