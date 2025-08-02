@@ -1,29 +1,23 @@
 import './App.css';
-import Header from './component/Header';
-import Banner from './component/Banner';
+import Banner from './section/Banner';
 import Facilities from './component/Facilities';
 import Cards from './component/Cards';
-import Blogs from './component/Blogs';
-import Footer from './component/Footer';
+import Blogs from './section/Blogs';
 import CartSidebar from './component/Cartsidebar';
 import './component/style.css';
 
-function App({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) {
+function App({isCartOpen, cartItems, addToCart, clearCart }) {
   return (
     <>
-      <Header toggleCart={toggleCart} />
       <CartSidebar
         isOpen={isCartOpen}
-        toggleCart={toggleCart}
         cartItems={cartItems}
         clearCart={clearCart}
       />
       <Banner />
       <Facilities />
       <Cards addToCart={addToCart} />
-      
       <Blogs />
-      <Footer />
     </>
   );
 }

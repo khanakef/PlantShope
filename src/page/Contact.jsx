@@ -1,15 +1,12 @@
 
-import Header from "../component/Header";
 import CartSidebar from "../component/Cartsidebar";
-import ContactBanner from "../component/ContactBanner";
+import ContactBanner from "../section/ContactBanner";
 import Facilities from "../component/Facilities";
-import ContactInfo from "../component/ContactInfo";
-import Footer from "../component/Footer";
+import ContactInfo from "../section/ContactInfo";
 
 const Contact = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) => {
   return (
     <>
-      <Header toggleCart={toggleCart} />
       <CartSidebar
         isOpen={isCartOpen}
         toggleCart={toggleCart}
@@ -19,7 +16,6 @@ const Contact = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) =>
       <ContactBanner/>
       <Facilities />
       <ContactInfo/>
-      <Footer />
     </>
   );
 };

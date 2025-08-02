@@ -4,10 +4,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import App from './App.jsx';
 import Shop from './page/Shop.jsx';
-import Blog from'./page/Blog.jsx'
+import Blog from './page/Blog.jsx'
 import Contact from './page/Contact.jsx';
+import Header from './component/Header.jsx';
+import Footer from './component/Footer.jsx';
 
 function MainApp() {
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
@@ -32,51 +35,52 @@ function MainApp() {
   const clearCart = () => setCartItems([]);
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <App
-              toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              addToCart={addToCart}
-              clearCart={clearCart}
-            />
-          }
-        />
-        <Route
-          path="/shop"
-          element={
-            <Shop
-              toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              addToCart={addToCart}
-              clearCart={clearCart}
-            />
-          }
-        />
-        <Route path="/Blog" element={<Blog 
-        toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              addToCart={addToCart}
-              clearCart={clearCart}
+    <>
+      <Header toggleCart={toggleCart} />
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <App
+                toggleCart={toggleCart}
+                isCartOpen={isCartOpen}
+                cartItems={cartItems}
+                clearCart={clearCart}
+              />
+            }
+          />
+          <Route
+            path="/shop"
+            element={
+              <Shop
+                toggleCart={toggleCart}
+                isCartOpen={isCartOpen}
+                cartItems={cartItems}
+                addToCart={addToCart}
+                clearCart={clearCart}
+              />
+            }
+          />
+          <Route path="/Blog" element={<Blog
+            toggleCart={toggleCart}
+            isCartOpen={isCartOpen}
+            cartItems={cartItems}
+            clearCart={clearCart}
 
-         />} />
+          />} />
 
-         <Route path="/Contact" element={<Contact 
-        toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              addToCart={addToCart}
-              clearCart={clearCart}
+          <Route path="/Contact" element={<Contact
+            toggleCart={toggleCart}
+            isCartOpen={isCartOpen}
+            cartItems={cartItems}
+            clearCart={clearCart}
 
-         />} />
-      </Routes>
-    </Router>
+          />} />
+        </Routes>
+      </Router>
+      <Footer />
+    </>
   );
 }
 
