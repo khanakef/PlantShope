@@ -1,24 +1,24 @@
-import './App.css';
-import Banner from './section/Banner';
-import Facilities from './component/Facilities';
-import Cards from './component/Cards';
-import Blogs from './section/Blogs';
-import CartSidebar from './component/Cartsidebar';
-import './component/style.css';
+// import './App.css';
+// import Banner from './section/Banner';
+// import Facilities from './component/Facilities';
+// import Cards from './component/Cards';
+// import Blogs from './section/Blogs';
+// import CartSidebar from './component/Cartsidebar';
+// import './component/style.css';
 
-function App({isCartOpen, cartItems, addToCart, clearCart }) {
-  return (
-    <>
-      <CartSidebar
-        isOpen={isCartOpen}
-        cartItems={cartItems}
-        clearCart={clearCart}
-      />
-      <Banner />
-      <Facilities />
-      <Cards addToCart={addToCart} />
-      <Blogs />
-    </>
-  );
-}
-export default App;
+// function App({isCartOpen, cartItems, addToCart, clearCart }) {
+//   return (
+//     <>
+//       <CartSidebar
+//         isOpen={isCartOpen}
+//         cartItems={cartItems}
+//         clearCart={clearCart}
+//       />
+//       <Banner />
+//       <Facilities />
+//       <Cards addToCart={addToCart} />
+//       <Blogs />
+//     </>
+//   );
+// }
+// export default App;

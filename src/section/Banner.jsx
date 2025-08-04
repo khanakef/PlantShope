@@ -1,4 +1,4 @@
-const Baner = () => {
+const Banner = () => {
     return (
         <>
             <section>
@@ -79,4 +79,4 @@ const Baner = () => {
         </>
     )
 };
-export default Baner
+export default Banner

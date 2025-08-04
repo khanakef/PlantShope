@@ -2,7 +2,7 @@ import './index.css';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
-import App from './App.jsx';
+import Home from './page/Home.jsx';
 import Shop from './page/Shop.jsx';
 import Blog from './page/Blog.jsx'
 import Contact from './page/Contact.jsx';
@@ -42,7 +42,7 @@ function MainApp() {
           <Route
             path="/"
             element={
-              <App
+              <Home
                 toggleCart={toggleCart}
                 isCartOpen={isCartOpen}
                 cartItems={cartItems}
