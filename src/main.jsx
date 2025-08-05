@@ -4,13 +4,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import Home from './page/Home.jsx';
 import Shop from './page/Shop.jsx';
-import Blog from './page/Blog.jsx'
+import Blog from './page/Blog.jsx';
 import Contact from './page/Contact.jsx';
 import Header from './component/Header.jsx';
 import Footer from './component/Footer.jsx';
 
 function MainApp() {
-
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
@@ -20,23 +19,37 @@ function MainApp() {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((i) => i.name === item.name);
       if (existingItem) {
-        // Update quantity
         return prevItems.map((i) =>
-          i.name === item.name ? { ...i, quantity: i.quantity + item.quantity } : i
+          i.name === item.name
+            ? { ...i, quantity: i.quantity + item.quantity }
+            : i
         );
       } else {
-        // Add new item
         return [...prevItems, item];
       }
     });
-    setIsCartOpen(true); // Auto open cart
+    setIsCartOpen(true); // Open cart on add
   };
 
   const clearCart = () => setCartItems([]);
 
+  // ✅ Add this function
+  const removeFromCart = (itemName) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.name !== itemName));
+  };
+
+  const updateQuantity = (name, newQty) => {
+  setCartItems(prevItems =>
+    prevItems.map(item =>
+      item.name === name ? { ...item, quantity: newQty } : item
+    )
+  );
+};
+
+
   return (
     <>
-      <Header toggleCart={toggleCart} />
+      <Header toggleCart={toggleCart} cartItems={cartItems} />
       <Router>
         <Routes>
           <Route
@@ -59,24 +72,33 @@ function MainApp() {
                 cartItems={cartItems}
                 addToCart={addToCart}
                 clearCart={clearCart}
+                removeFromCart={removeFromCart} // ✅ Pass here
+                updateQuantity={updateQuantity}
               />
             }
           />
-          <Route path="/Blog" element={<Blog
-            toggleCart={toggleCart}
-            isCartOpen={isCartOpen}
-            cartItems={cartItems}
-            clearCart={clearCart}
-
-          />} />
-
-          <Route path="/Contact" element={<Contact
-            toggleCart={toggleCart}
-            isCartOpen={isCartOpen}
-            cartItems={cartItems}
-            clearCart={clearCart}
-
-          />} />
+          <Route
+            path="/Blog"
+            element={
+              <Blog
+                toggleCart={toggleCart}
+                isCartOpen={isCartOpen}
+                cartItems={cartItems}
+                clearCart={clearCart}
+              />
+            }
+          />
+          <Route
+            path="/Contact"
+            element={
+              <Contact
+                toggleCart={toggleCart}
+                isCartOpen={isCartOpen}
+                cartItems={cartItems}
+                clearCart={clearCart}
+              />
+            }
+          />
         </Routes>
       </Router>
       <Footer />

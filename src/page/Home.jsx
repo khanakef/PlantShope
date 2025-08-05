@@ -5,11 +5,12 @@ import Blogs from '../section/Blogs';
 import CartSidebar from '../component/Cartsidebar';
 import '../component/style.css';
 
-const Home = ({isCartOpen, cartItems, addToCart, clearCart }) => {
+const Home = ({toggleCart={toggleCart},isCartOpen, cartItems, addToCart, clearCart }) => {
     return (
         <>
             <CartSidebar
                 isOpen={isCartOpen}
+                toggleCart={toggleCart}
                 cartItems={cartItems}
                 clearCart={clearCart}
             />

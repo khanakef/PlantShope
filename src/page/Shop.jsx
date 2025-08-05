@@ -4,7 +4,8 @@ import PlansList from "../component/PlansList";
 import ShopBaner from "../section/ShopBaner";
 import CartSidebar from "../component/Cartsidebar";
 
-const Shop = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) => {
+const Shop = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart, removeFromCart,updateQuantity  }) => {
+
   return (
     <>
       <CartSidebar
@@ -12,7 +13,11 @@ const Shop = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart }) => {
         toggleCart={toggleCart}
         cartItems={cartItems}
         clearCart={clearCart}
+        removeFromCart={removeFromCart}
+        updateQuantity={updateQuantity}
       />
+
+
       <ShopBaner/>
       <Facilities />
       <PlansList addToCart={addToCart} />

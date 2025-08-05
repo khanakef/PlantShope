@@ -1,5 +1,7 @@
 
-const Header = ({ toggleCart }) => {
+const Header = ({ toggleCart, cartItems }) => {
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <>
       <header>
@@ -52,12 +54,15 @@ const Header = ({ toggleCart }) => {
                   onClick={toggleCart}
                 >
                   <i className="fa-solid fa-cart-shopping" style={{ fontSize: 25 }} />
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    0
-                    <span className="visually-hidden">unread messages</span>
-                  </span>
+                  {totalItems > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {totalItems}
+                      <span className="visually-hidden">cart items</span>
+                    </span>
+                  )}
                 </button>
               </div>
+
             </div>
           </div>
         </nav>
