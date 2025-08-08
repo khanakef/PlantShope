@@ -8,10 +8,20 @@ import Blog from './page/Blog.jsx';
 import Contact from './page/Contact.jsx';
 import Header from './component/Header.jsx';
 import Footer from './component/Footer.jsx';
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function MainApp() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // animation duration in ms
+      once: false, // animation happens only once
+    });
+  }, []);
 
   const toggleCart = () => setIsCartOpen((prev) => !prev);
 

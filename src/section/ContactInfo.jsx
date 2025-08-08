@@ -26,7 +26,7 @@ const ContactInfo = () => {
   };
 
   return (
-    <div className="container my-5">
+    <div className="container my-5"data-aos="zoom-in-up">
       <h2 className="text-center mb-4">Contact Us</h2>
       <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: "600px" }}>
         <div className="mb-3">

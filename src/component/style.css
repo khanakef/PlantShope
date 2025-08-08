@@ -65,7 +65,7 @@ a i {
 
 .card {
     overflow: auto;
-    border-radius: 5% !important;
+    border-radius: 10% !important;
     border: 1px solid var(--bs-primary) !important;
     transition: 0.4s ease;
 }

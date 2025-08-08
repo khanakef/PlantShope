@@ -3,7 +3,7 @@ const Blogs = () =>{
       <>
         <section className="section-md">
           <h2 className="text-center">OUR LATES BLOGS</h2>
-          <div
+          <div  
             className="row justify-content-evenly py-3 mt-5"
             data-aos="zoom-in-up"
             data-aos-duration={1000}

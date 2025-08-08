@@ -2,9 +2,7 @@ const Footer = () =>{
     return(
         <>
             <>
-  <footer
-    className=" bg-dark-subtle py-5"
-  >
+  <footer className=" bg-dark-subtle py-5"  data-aos="zoom-in-up">
     <div className="container">
       <div className=" footer-wrapper row justify-content-evenly">
         <div className="col-sm-12 col-md-6 col-lg-3 align-self-center">

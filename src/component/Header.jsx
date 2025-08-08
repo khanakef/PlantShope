@@ -1,16 +1,16 @@
-
 const Header = ({ toggleCart, cartItems }) => {
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  // ✅ Unique items count (same product multiple times -> 1 count)
+  const totalItems = new Set(cartItems.map(item => item.id)).size;
 
   return (
     <>
       <header>
-        <nav className="navbar navbar-expand-lg bg-dark-subtle">
+        <nav className="navbar navbar-expand-lg bg-dark-subtle fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="index.html">
+            <a className="navbar-brand" href="/">
               <div className="logo-container">
                 <img
-                  src="public/images/LOGO.png "
+                  src="public/images/LOGO.png"
                   alt="Logo"
                 />
               </div>
@@ -27,7 +27,7 @@ const Header = ({ toggleCart, cartItems }) => {
               <span className="navbar-toggler-icon" />
             </button>
             <div
-              className="collapse navbar-collapse justify-content-between"
+              className="collapse navbar-collapse justify-content-center"
               id="navbarNavDropdown"
             >
               <ul className="navbar-nav">

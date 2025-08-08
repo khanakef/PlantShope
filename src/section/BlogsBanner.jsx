@@ -1,7 +1,7 @@
 const BlogsBanner = () => {
     return (
         <>
-            <section>
+            <section style={{ paddingTop: "1px" }}>
                 <div id="carouselExampleIndicators" className="carousel slide">
                     <div className="carousel-indicators">
                         {/* <button
