@@ -1,12 +1,12 @@
-import Cards from "../component/Cards";
+// import Cards from "../component/Cards";
 
-const PlansList = ({ addToCart }) => {
+// const PlansList = ({ addToCart }) => {
     
     
 
-    return (
-       <></>
-    );
-};
+//     return (
+//        <></>
+//     );
+// };
 
-export default PlansList;
+// export default PlansList;

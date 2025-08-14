@@ -1,52 +1,48 @@
+import Logout from "../page/Logout";
+
 const Header = ({ toggleCart, cartItems }) => {
-  // ✅ Unique items count (same product multiple times -> 1 count)
   const totalItems = new Set(cartItems.map(item => item.id)).size;
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"; // ✅ same storage
 
   return (
-    <>
-      <header>
-        <nav className="navbar navbar-expand-lg bg-dark-subtle fixed-top">
-          <div className="container-fluid">
-            <a className="navbar-brand" href="/">
-              <div className="logo-container">
-                <img
-                  src="public/images/LOGO.png"
-                  alt="Logo"
-                />
-              </div>
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div
-              className="collapse navbar-collapse justify-content-center"
-              id="navbarNavDropdown"
-            >
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link" href="/">Home</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/shop">Shop</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/Blog">Blog</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/Contact">Contact</a>
-                </li>
-              </ul>
+    <header>
+      <nav className="navbar navbar-expand-sm bg-dark-subtle fixed-top">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">
+            <div className="logo-container">
+              <img src="public/images/LOGO.png" alt="Logo" />
+            </div>
+          </a>
+
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <div className="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+            <ul className="navbar-nav align-items-lg-center w-100">
+              <li className="nav-item">
+                <a className="nav-link" href="/">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/shop">Shop</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/Blog">Blog</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/Contact">Contact</a>
+              </li>
 
               {/* Cart icon */}
-              <div className="cart-icon-container position-absolute end-0 me-3">
+              <li className="nav-item mt-2 mt-lg-0 ms-lg-auto">
                 <button
                   className="btn-transparent position-relative border-0 bg-transparent"
                   id="cartbtn"
@@ -61,13 +57,19 @@ const Header = ({ toggleCart, cartItems }) => {
                     </span>
                   )}
                 </button>
-              </div>
+              </li>
 
-            </div>
+              {/* Logout only when logged in */}
+              {isLoggedIn && (
+                <li className="nav-item ms-3">
+                  <Logout />
+                </li>
+              )}
+            </ul>
           </div>
-        </nav>
-      </header>
-    </>
+        </div>
+      </nav>
+    </header>
   );
 };
 

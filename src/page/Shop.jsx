@@ -1,7 +1,5 @@
-
+import Banner from '../section/Banner'; // adjust path if different
 import Facilities from "../component/Facilities";
-import PlansList from "../component/PlansList";
-import ShopBaner from "../section/ShopBaner";
 import CartSidebar from "../component/Cartsidebar";
 import Cards from "../component/Cards";
 
@@ -16,6 +14,13 @@ const Shop = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart, removeF
             image: plant.img
         });
     };
+
+
+   const ShopSlides = [
+    { image: "/Images/shopeBanner.png", caption: 'Rooted in Nature, Grown with Love. From Our Garden to Your Home.' },
+    // { image: "/Images/pexels-cottonbro-4503732.jpg", caption: 'Fresh plants for a fresh mind' },
+    // { image: "/Images/pexels-fotios-photos-1090638.jpg", caption: 'Bring greenery to your life' }
+  ];
 
     const plantsData = [
         {
@@ -87,7 +92,7 @@ const Shop = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart, removeF
       />
 
 
-      <ShopBaner/>
+      <Banner slides={ShopSlides} carouselId="shopBanner" />
       <Facilities />
       <Cards data={plantsData} onButtonClick={handleAdd} />
     </>

@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const CartSidebar = ({ isOpen, toggleCart, cartItems, clearCart, removeFromCart, updateQuantity }) => {
 
+ const navigate = useNavigate();
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -65,7 +68,18 @@ const CartSidebar = ({ isOpen, toggleCart, cartItems, clearCart, removeFromCart,
 
       <div className="cart-footer p-3 border-top">
         <h6>Total: ₹{total}</h6>
-        <button className="btn btn-success w-100 my-2">Buy Now</button>
+       <button
+          className="btn btn-success w-100 my-2"
+          onClick={() => {
+            if (cartItems.length === 0) {
+              alert("Your cart is empty! Add items before buying.");
+              return;
+            }
+            navigate("/checkout");
+          }}
+        >
+          Buy Now
+        </button>
         {/* <button className="btn btn-danger w-100" onClick={clearCart}>Clear Cart</button> */}
       </div>
     </div>

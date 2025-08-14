@@ -1,82 +1,60 @@
-const Banner = () => {
-    return (
-        <>
-            <section style={{ paddingTop: "1px" }}>
-                <div id="carouselExampleIndicators" className="carousel slide">
-                    <div className="carousel-indicators">
-                        <button
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to={0}
-                            className="active"
-                            aria-current="true"
-                            aria-label="Slide 1"
-                        />
-                        <button
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to={1}
-                            aria-label="Slide 2"
-                        />
-                        <button
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to={2}
-                            aria-label="Slide 3"
-                        />
-                    </div>
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img
-                                src="/Images/pexels-saijanani-selvarajan-759261681-33143925.jpg"
-                                className="d-block w-100"
-                                alt="...
-                                "
+const Banner = ({ slides, carouselId = "mainBanner" }) => (
+  <section style={{ paddingTop: "1px" }}>
+    <div id={carouselId} className="carousel slide">
+      
+      {/* Indicators */}
+      <div className="carousel-indicators">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            data-bs-target={`#${carouselId}`}
+            data-bs-slide-to={i}
+            className={i === 0 ? "active" : ""}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
+      </div>
 
-                            />
-                            <div className="carousel-caption text-light">
-                                <h1>
-                                    Rooted in Nature, Grown with Love."
-                                    "From Our Garden to Your Home.
-                                </h1>
-                            </div>
-                        </div>
-                        <div className="carousel-item">
-                            <img
-                                src="/Images/pexels-cottonbro-4503732.jpg"
-                                className="d-block w-100"
-                                alt="..."
-                            />
-                        </div>
-                        <div className="carousel-item">
-                            <img
-                                src="/Images/pexels-fotios-photos-1090638.jpg"
-                                className="d-block w-100"
-                                alt="..."
-                            />
-                        </div>
-                    </div>
-                    <button
-                        className="carousel-control-prev WHG"
-                        type="button"
-                        data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev"
-                    >
-                        <span className="carousel-control-prev-icon " aria-hidden="true" />
-                        <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button
-                        className="carousel-control-next WHG"
-                        type="button"
-                        data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next"
-                    >
-                        <span className="carousel-control-next-icon" aria-hidden="true" />
-                        <span className="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </section>
+      {/* Slides */}
+      <div className="carousel-inner">
+        {slides.map(({ image, caption, alt }, i) => (
+          <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
+            <img src={image} className="d-block w-100" alt={alt || "Banner"} />
+            {caption && (
+              <div className="carousel-caption text-light">
+                <h1>{caption}</h1>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Controls */}
+      {slides.length > 1 && (
+        <>
+          <button
+            className="carousel-control-prev WHG"
+            type="button"
+            data-bs-target={`#${carouselId}`}
+            data-bs-slide="prev"
+          >
+            <span className="carousel-control-prev-icon" aria-hidden="true" />
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next WHG"
+            type="button"
+            data-bs-target={`#${carouselId}`}
+            data-bs-slide="next"
+          >
+            <span className="carousel-control-next-icon" aria-hidden="true" />
+            <span className="visually-hidden">Next</span>
+          </button>
         </>
-    )
-};
-export default Banner
+      )}
+    </div>
+  </section>
+);
+
+export default Banner;
