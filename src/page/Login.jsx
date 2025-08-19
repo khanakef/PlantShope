@@ -22,27 +22,37 @@ const Login = () => {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+  e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ email, password }),
-      });
+  if (!validateForm()) return;   // run your validation first
 
-      const data = await res.json();
-      if (res.ok) {
-        navigate(from, { replace: true });
-      } else {
-        alert(data.error || "Login failed");
-      }
-    } catch (error) {
-      alert("Something went wrong");
+  try {
+    const res = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+      credentials: "include",
+    });
+
+    const data = await res.json();
+    console.log("Login response:", data);
+
+    if (data.success) {
+      // ✅ Save user to localStorage or context
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      // ✅ Navigate back to where user came from (or home)
+      navigate(from, { replace: true });
+    } else {
+      alert(data.error || "Login failed");
     }
-  };
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Something went wrong. Please try again.");
+  }
+};
+
+
 
   return (
     <div className="container mt-5 pt-5" style={{ maxWidth: "400px" }}>

@@ -6,11 +6,19 @@ const AuthMiddleware = ({ children }) => {
   const [isAuth, setIsAuth] = useState(null);
 
   useEffect(() => {
+    const tabToken = sessionStorage.getItem("tabToken");
+
+    // Agar tabToken hi nahi hai → force login
+    if (!tabToken) {
+      setIsAuth(false);
+      return;
+    }
+
     fetch("http://localhost:5000/check-auth", {
-      credentials: "include"
+      credentials: "include",
     })
-      .then(res => res.json())
-      .then(data => setIsAuth(data.authenticated))
+      .then((res) => res.json())
+      .then((data) => setIsAuth(data.authenticated))
       .catch(() => setIsAuth(false));
   }, []);
 

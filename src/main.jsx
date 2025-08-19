@@ -1,17 +1,10 @@
 import './index.css';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Home from './page/Home.jsx';
-import Shop from './page/Shop.jsx';
-import Blog from './page/Blog.jsx';
-import Contact from './page/Contact.jsx';
-import Checkout from './page/Checkout.jsx';
-import Login from './page/Login.jsx';
-import Registration from './page/Registration.jsx';
 import Header from './component/Header.jsx';
 import Footer from './component/Footer.jsx';
-import AuthMiddleware from './component/AuthMiddleware.jsx';
+import AppRoutes from './routes/AppRoute.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -51,64 +44,22 @@ function MainApp() {
   return (
     <>
       {!hideHeaderFooter && <Header toggleCart={toggleCart} cartItems={cartItems} />}
-
-      <Routes>
-        {/* Public routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Registration />} />
-
-        {/* Private routes wrapped in AuthMiddleware */}
-        <Route
-          path="/"
-          element={
-            <AuthMiddleware>
-              <Home toggleCart={toggleCart} isCartOpen={isCartOpen} cartItems={cartItems} clearCart={clearCart} />
-            </AuthMiddleware>
-          }
-        />
-        <Route
-          path="/shop"
-          element={
-            <AuthMiddleware>
-              <Shop toggleCart={toggleCart} isCartOpen={isCartOpen} cartItems={cartItems} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
-            </AuthMiddleware>
-          }
-        />
-        <Route
-          path="/blog"
-          element={
-            <AuthMiddleware>
-              <Blog toggleCart={toggleCart} isCartOpen={isCartOpen} cartItems={cartItems} clearCart={clearCart} />
-            </AuthMiddleware>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <AuthMiddleware>
-              <Contact toggleCart={toggleCart} isCartOpen={isCartOpen} cartItems={cartItems} clearCart={clearCart} />
-            </AuthMiddleware>
-          }
-        />
-        <Route
-          path="/checkout"
-          element={
-            <AuthMiddleware>
-              <Checkout toggleCart={toggleCart} isCartOpen={isCartOpen} cartItems={cartItems} clearCart={clearCart} />
-            </AuthMiddleware>
-          }
-        />
-
-        {/* Catch-all */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      
+      <AppRoutes
+        toggleCart={toggleCart}
+        isCartOpen={isCartOpen}
+        cartItems={cartItems}
+        addToCart={addToCart}
+        clearCart={clearCart}
+        removeFromCart={removeFromCart}
+        updateQuantity={updateQuantity}
+      />
 
       {!hideHeaderFooter && <Footer />}
     </>
   );
 }
 
-// Wrap MainApp in Router so useLocation works
 function AppWithRouter() {
   return (
     <Router>
@@ -117,10 +68,8 @@ function AppWithRouter() {
   );
 }
 
-window.onload = () => {
-  const container = document.getElementById('root');
-  if (container) {
-    const root = createRoot(container);
-    root.render(<AppWithRouter />);
-  }
-};
+const container = document.getElementById('root');
+if (container) {
+  const root = createRoot(container);
+  root.render(<AppWithRouter />);
+}
