@@ -38,15 +38,19 @@ const Login = () => {
     console.log("Login response:", data);
 
     if (data.success) {
-      // ✅ Save user to localStorage or context
       localStorage.setItem("user", JSON.stringify(data.user));
-
-      // ✅ Navigate back to where user came from (or home)
-      navigate(from, { replace: true });
+      
+      if (data.user.role === "admin" || data.user.role === "superadmin") {
+        navigate("/dashboard", { replace: true });   // 🚀 Admin → Dashboard
+      } else {
+        navigate("/", { replace: true });            // 🚀 User → Home
+      }
     } else {
       alert(data.error || "Login failed");
     }
-  } catch (err) {
+
+  } 
+  catch (err) {
     console.error("Login error:", err);
     alert("Something went wrong. Please try again.");
   }

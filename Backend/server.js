@@ -3,7 +3,7 @@ import session from "express-session";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";   // ✅ sahi
 import { createUsersTable } from "./database/tables/usersTable.js";  // ✅ sahi
-
+import { createAdminsTable } from "./database/tables/adminTable.js";
 
 const app = express();
 const PORT = 5000;
@@ -29,6 +29,7 @@ app.use(
 
 // ✅ Database table create
 createUsersTable();
+createAdminsTable();
 
 // ✅ Routes (sabko /api prefix pe mount karo taaki clear ho)
 app.use("/api", authRoutes);
