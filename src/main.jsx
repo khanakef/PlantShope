@@ -14,7 +14,7 @@ function MainApp() {
   const location = useLocation();
 
   // Hide header/footer on login and register pages
-  const hideHeaderFooter = ["/login", "/register"].includes(location.pathname);
+  const hideHeaderFooter = ["/login", "/register", "/dashboard"].includes(location.pathname);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
