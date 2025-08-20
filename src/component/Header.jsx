@@ -3,6 +3,7 @@ import Logout from "../page/Logout";
 const Header = ({ toggleCart, cartItems }) => {
   const totalItems = new Set(cartItems.map(item => item.id)).size;
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"; // ✅ same storage
+   const user = JSON.parse(localStorage.getItem("user")); // ✅ Check login
 
   return (
     <header>
@@ -59,12 +60,12 @@ const Header = ({ toggleCart, cartItems }) => {
                 </button>
               </li>
 
-              {/* Logout only when logged in */}
-              {isLoggedIn && (
-                <li className="nav-item ms-3">
-                  <Logout />
-                </li>
-              )}
+              {/* ✅ Show logout if user is logged in */}
+        {user ? (
+          <Logout />
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
             </ul>
           </div>
         </div>

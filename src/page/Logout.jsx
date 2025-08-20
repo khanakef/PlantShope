@@ -5,12 +5,14 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await fetch("http://localhost:5000/logout", {
-      method: "POST",
-      credentials: "include"
-    });
-    navigate("/login", { replace: true });
-  };
+  await fetch("http://localhost:5000/logout", {
+    method: "POST",
+    credentials: "include"
+  });
+  localStorage.removeItem("user");   // ✅ clear local storage
+  navigate("/login", { replace: true });
+};
+
 
   return (
     <button onClick={handleLogout} className="btn btn-danger">
