@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import Logout from "../page/Logout";
+// import Logout from "../page/Logout";
 
 const Header = ({ toggleCart, cartItems }) => {
   const totalItems = new Set(cartItems.map(item => item.id)).size;
@@ -63,11 +63,11 @@ const Header = ({ toggleCart, cartItems }) => {
               </li>
 
               {/* ✅ Show logout if user is logged in */}
-        {user ? (
+        {/* {user ? (
           <Logout />
         ) : (
           <Link to="/login">Login</Link>
-        )}
+        )} */}
             </ul>
           </div>
         </div>

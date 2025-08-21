@@ -75,7 +75,7 @@ const CartSidebar = ({ isOpen, toggleCart, cartItems, clearCart, removeFromCart,
               alert("Your cart is empty! Add items before buying.");
               return;
             }
-            navigate("/checkout");
+            navigate("");
           }}
         >
           Buy Now

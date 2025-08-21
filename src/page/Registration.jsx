@@ -7,15 +7,13 @@ const Registration = () => {
     fullName: "",
     email: "",
     password: "",
-    confirmPassword: "",
     phone: "",
     address: "",
-    recruitment: "",
     dob: "",
     gender: "",
-    city: "",       // new field
-    country: "",    // new field
-    pinCode: "",    // new field
+    city: "",
+    country: "",
+    pinCode: "",
   });
 
   const handleChange = (e) => {
@@ -25,176 +23,177 @@ const Registration = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // ✅ Function to insert data via /register route
+  const handleRegister = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+
+      if (res.ok) {
+        alert("✅ Registration successful!");
+        setTimeout(() => {
+          navigate("/userdata"); // redirect to blank userdata page
+        }, 1500);
+      } else {
+        const errorData = await res.json();
+        alert("❌ Error: " + errorData.message);
+      }
+    } catch (err) {
+      console.error("Registration Error:", err);
+      alert("Something went wrong!");
     }
-
-    console.log("User Registered:", formData);
-    alert("Registration successful!");
-    navigate("/login");
   };
 
   return (
     <div className="container mt-5 pt-5" style={{ maxWidth: "500px" }}>
       <h2 className="text-center mb-4">Create an Account</h2>
-      <form onSubmit={handleSubmit}>
 
-        {/* Full Name */}
-        <div className="mb-3">
-          <label className="form-label">Full Name</label>
-          <input
-            type="text"
-            name="fullName"
-            className="form-control"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Full Name */}
+      <div className="mb-3">
+        <label className="form-label">Full Name</label>
+        <input
+          type="text"
+          name="fullName"
+          className="form-control"
+          value={formData.fullName}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* Email */}
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Email */}
+      <div className="mb-3">
+        <label className="form-label">Email</label>
+        <input
+          type="email"
+          name="email"
+          className="form-control"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* Password */}
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Password */}
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          className="form-control"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* Confirm Password */}
-        <div className="mb-3">
-          <label className="form-label">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            className="form-control"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Phone */}
+      <div className="mb-3">
+        <label className="form-label">Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          className="form-control"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* Phone Number */}
-        <div className="mb-3">
-          <label className="form-label">Phone Number</label>
-          <input
-            type="tel"
-            name="phone"
-            className="form-control"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Address */}
+      <div className="mb-3">
+        <label className="form-label">Address</label>
+        <textarea
+          name="address"
+          className="form-control"
+          rows="3"
+          value={formData.address}
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
 
-        {/* Address */}
-        <div className="mb-3">
-          <label className="form-label">Address</label>
-          <textarea
-            name="address"
-            className="form-control"
-            rows="3"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
+      {/* City */}
+      <div className="mb-3">
+        <label className="form-label">City</label>
+        <input
+          type="text"
+          name="city"
+          className="form-control"
+          value={formData.city}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* City */}
-        <div className="mb-3">
-          <label className="form-label">City</label>
-          <input
-            type="text"
-            name="city"
-            className="form-control"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Country */}
+      <div className="mb-3">
+        <label className="form-label">Country</label>
+        <input
+          type="text"
+          name="country"
+          className="form-control"
+          value={formData.country}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* Country */}
-        <div className="mb-3">
-          <label className="form-label">Country</label>
-          <input
-            type="text"
-            name="country"
-            className="form-control"
-            value={formData.country}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Pin Code */}
+      <div className="mb-3">
+        <label className="form-label">Pin Code</label>
+        <input
+          type="text"
+          name="pinCode"
+          className="form-control"
+          value={formData.pinCode}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* Pin Code */}
-        <div className="mb-3">
-          <label className="form-label">Pin Code</label>
-          <input
-            type="text"
-            name="pinCode"
-            className="form-control"
-            value={formData.pinCode}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* DOB */}
+      <div className="mb-3">
+        <label className="form-label">Date of Birth</label>
+        <input
+          type="date"
+          name="dob"
+          className="form-control"
+          value={formData.dob}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-        {/* Date of Birth */}
-        <div className="mb-3">
-          <label className="form-label">Date of Birth</label>
-          <input
-            type="date"
-            name="dob"
-            className="form-control"
-            value={formData.dob}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      {/* Gender */}
+      <div className="mb-3">
+        <label className="form-label">Gender</label>
+        <select
+          name="gender"
+          className="form-control"
+          value={formData.gender}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
-        {/* Gender */}
-        <div className="mb-3">
-          <label className="form-label">Gender</label>
-          <select
-            name="gender"
-            className="form-control"
-            value={formData.gender}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        {/* Submit Button */}
-        <button type="submit" className="btn btn-primary w-100">
-          Register
-        </button>
-      </form>
+      {/* ✅ Register Button */}
+      <button
+        type="button"
+        className="btn btn-primary w-100"
+        onClick={handleRegister}
+      >
+        Register
+      </button>
     </div>
   );
 };

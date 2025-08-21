@@ -6,82 +6,66 @@ import Contact from "../page/Contact.jsx";
 import Checkout from "../page/Checkout.jsx";
 import Login from "../page/Login.jsx";
 import Registration from "../page/Registration.jsx";
-import Dashboard from "../page/Dashboard.jsx";   // ✅ Dashboard import
-import PrivateRoute from "../routes/PrivateRoute.jsx";
+import Dashboard from "../page/Dashboard.jsx"; 
+import UserData from "../component/UserData.jsx";  
+// import PrivateRoute from "../routes/PrivateRoute.jsx"; // 🚫 Commented out
 
 const AppRoutes = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart, removeFromCart, updateQuantity }) => {
   return (
     <Routes>
       {/* Public Routes */}
+      <Route path="/" element={
+        <Home
+          toggleCart={toggleCart}
+          isCartOpen={isCartOpen}
+          cartItems={cartItems}
+          clearCart={clearCart}
+        />
+      } />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Registration />} />
+      
+      {/* 🚫 Removed PrivateRoute wrapping — all are now public */}
+      <Route path="/shop" element={
+        <Shop
+          toggleCart={toggleCart}
+          isCartOpen={isCartOpen}
+          cartItems={cartItems}
+          addToCart={addToCart}
+          clearCart={clearCart}
+          removeFromCart={removeFromCart}
+          updateQuantity={updateQuantity}
+        />
+      } />
+      <Route path="/blog" element={
+        <Blog
+          toggleCart={toggleCart}
+          isCartOpen={isCartOpen}
+          cartItems={cartItems}
+          clearCart={clearCart}
+        />
+      } />
+      <Route path="/contact" element={
+        <Contact
+          toggleCart={toggleCart}
+          isCartOpen={isCartOpen}
+          cartItems={cartItems}
+          clearCart={clearCart}
+        />
+      } />
+      <Route path="/checkout" element={
+        <Checkout
+          toggleCart={toggleCart}
+          isCartOpen={isCartOpen}
+          cartItems={cartItems}
+          clearCart={clearCart}
+        />
+      } />
 
-      {/* Private Routes */}
-      <Route element={<PrivateRoute />}>
-        <Route
-          path="/"
-          element={
-            <Home
-              toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              clearCart={clearCart}
-            />
-          }
-        />
-        <Route
-          path="/shop"
-          element={
-            <Shop
-              toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              addToCart={addToCart}
-              clearCart={clearCart}
-              removeFromCart={removeFromCart}
-              updateQuantity={updateQuantity}
-            />
-          }
-        />
-        <Route
-          path="/blog"
-          element={
-            <Blog
-              toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              clearCart={clearCart}
-            />
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <Contact
-              toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              clearCart={clearCart}
-            />
-          }
-        />
-        <Route
-          path="/checkout"
-          element={
-            <Checkout
-              toggleCart={toggleCart}
-              isCartOpen={isCartOpen}
-              cartItems={cartItems}
-              clearCart={clearCart}
-            />
-          }
-        />
+      <Route path="/userdata" element={<UserData />} />
 
-        {/* ✅ Dashboard sirf admin ke liye */}
-        <Route element={<PrivateRoute requiredRole="admin" />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-      </Route>
+      {/* 🚫 Even Dashboard is now public (no login needed) */}
+      <Route path="/dashboard" element={<Dashboard />} />
 
       {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
