@@ -8,6 +8,7 @@ import Login from "../page/Login.jsx";
 import Registration from "../page/Registration.jsx";
 import Dashboard from "../page/Dashboard.jsx"; 
 import UserData from "../component/UserData.jsx";  
+import LoginUsers from "../component/LoginUsers.jsx";
 // import PrivateRoute from "../routes/PrivateRoute.jsx"; // 🚫 Commented out
 
 const AppRoutes = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart, removeFromCart, updateQuantity }) => {
@@ -63,6 +64,8 @@ const AppRoutes = ({ toggleCart, isCartOpen, cartItems, addToCart, clearCart, re
       } />
 
       <Route path="/userdata" element={<UserData />} />
+
+      <Route path="/logindata" element={<LoginUsers />} />
 
       {/* 🚫 Even Dashboard is now public (no login needed) */}
       <Route path="/dashboard" element={<Dashboard />} />

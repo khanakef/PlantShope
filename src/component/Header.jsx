@@ -1,22 +1,34 @@
 import { Link } from "react-router-dom";
-
 // import Logout from "../page/Logout";
 
 const Header = ({ toggleCart, cartItems }) => {
   const totalItems = new Set(cartItems.map(item => item.id)).size;
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"; // ✅ same storage
-   const user = JSON.parse(localStorage.getItem("user")); // ✅ Check login
+  const user = JSON.parse(localStorage.getItem("user")); // ✅ Check login
 
+  const handleDeleteTables = async () => {
+  try {
+    const res = await fetch("http://localhost:5000/api/delete-all-tables", {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    console.log(data.message); // ✅ Console me success msg
+  } catch (error) {
+    console.error("❌ Error deleting tables:", error);
+  }
+};
   return (
     <header>
       <nav className="navbar navbar-expand-sm bg-dark-subtle fixed-top">
         <div className="container-fluid">
+          {/* Logo */}
           <a className="navbar-brand" href="/">
             <div className="logo-container">
               <img src="public/images/LOGO.png" alt="Logo" />
             </div>
           </a>
 
+          {/* Toggle Button for mobile */}
           <button
             className="navbar-toggler"
             type="button"
@@ -29,7 +41,11 @@ const Header = ({ toggleCart, cartItems }) => {
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+          {/* Navbar Links */}
+          <div
+            className="collapse navbar-collapse justify-content-center"
+            id="navbarNavDropdown"
+          >
             <ul className="navbar-nav align-items-lg-center w-100">
               <li className="nav-item">
                 <a className="nav-link" href="/">Home</a>
@@ -62,12 +78,12 @@ const Header = ({ toggleCart, cartItems }) => {
                 </button>
               </li>
 
-              {/* ✅ Show logout if user is logged in */}
-        {/* {user ? (
-          <Logout />
-        ) : (
-          <Link to="/login">Login</Link>
-        )} */}
+              {/* ✅ Show Data Button */}
+              <li className="nav-item ms-3">
+                <button className="btn btn-info" onClick={handleDeleteTables}>
+                  Delete All Data
+                </button>
+              </li>
             </ul>
           </div>
         </div>

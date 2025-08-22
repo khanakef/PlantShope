@@ -5,7 +5,7 @@ export const createRegisterTable = () => {
     CREATE TABLE IF NOT EXISTS register (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       fullName TEXT NOT NULL,
-      email TEXT NOT NULL UNIQUE,
+      email TEXT NOT NULL,
       password TEXT NOT NULL,
       phone TEXT NOT NULL,
       address TEXT NOT NULL,

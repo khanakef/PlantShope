@@ -4,33 +4,52 @@ import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
-// Register API
+// ✅ Register new user
 router.post("/register", async (req, res) => {
   const { fullName, email, password, phone, address, city, country, pinCode, dob, gender } = req.body;
 
-  if (!fullName || !email || !password) {
-    return res.status(400).json({ message: "Please fill all required fields" });
-  }
-
   try {
-    // ✅ Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // ✅ Insert into DB
+    // First insert into register table
     db.run(
-      `INSERT INTO register (fullName, email, password, phone, address, city, country, pinCode, dob, gender) 
+      `INSERT INTO register (fullName, email, password, phone, address, city, country, pinCode, dob, gender)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [fullName, email, hashedPassword, phone, address, city, country, pinCode, dob, gender],
+      [fullName, email, password, phone, address, city, country, pinCode, dob, gender],
       function (err) {
         if (err) {
-          console.error("❌ Insert Error:", err.message);
-          return res.status(500).json({ message: "Database insert error", error: err.message });
+          console.error("❌ Register Error:", err.message);
+          return res.status(500).json({ error: "Registration failed" });
         }
-        res.status(201).json({ message: "User registered successfully", userId: this.lastID });
+
+        const registerId = this.lastID; // ✅ inserted register row id
+
+        // Hash password for login table
+        bcrypt.hash(password, 10, (err, hashedPassword) => {
+          if (err) {
+            console.error("❌ Hash Error:", err.message);
+            return res.status(500).json({ error: "Password hashing failed" });
+          }
+
+          // ✅ Insert into users (login) table
+          db.run(
+            `INSERT INTO users (register_id, email, password, status)
+             VALUES (?, ?, ?, ?)`,
+            [registerId, email, hashedPassword, "active"],
+            (err) => {
+              if (err) {
+                console.error("❌ Users Insert Error:", err.message);
+                return res.status(500).json({ error: "Failed to create login entry" });
+              }
+
+              console.log("✅ User registered and login entry created");
+              res.json({ message: "Registration successful" });
+            }
+          );
+        });
       }
     );
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    console.error("❌ Unexpected Error:", error.message);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
