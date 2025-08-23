@@ -4,16 +4,10 @@ export const createRegisterTable = () => {
   db.run(`
     CREATE TABLE IF NOT EXISTS register (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      fullName TEXT NOT NULL,
+      name TEXT NOT NULL,
+      number TEXT NOT NULL,
       email TEXT NOT NULL,
       password TEXT NOT NULL,
-      phone TEXT NOT NULL,
-      address TEXT NOT NULL,
-      city TEXT NOT NULL,
-      country TEXT NOT NULL,
-      pinCode TEXT NOT NULL,
-      dob TEXT NOT NULL,
-      gender TEXT NOT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
@@ -21,7 +15,8 @@ export const createRegisterTable = () => {
     if (err) {
       console.error("❌ Error creating register table:", err.message);
     } else {
-      console.log("✅ Register table created (if not exists)");
+      console.log("✅ Register table created/updated with only id, name, number, email, password");
     }
   });
 };
+

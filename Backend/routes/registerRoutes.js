@@ -6,42 +6,39 @@ const router = express.Router();
 
 // ✅ Register new user
 router.post("/register", async (req, res) => {
-  const { fullName, email, password, phone, address, city, country, pinCode, dob, gender } = req.body;
+  const { name, number, email, password } = req.body;
 
   try {
-    // First insert into register table
     db.run(
-      `INSERT INTO register (fullName, email, password, phone, address, city, country, pinCode, dob, gender)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [fullName, email, password, phone, address, city, country, pinCode, dob, gender],
+      `INSERT INTO register (name, number, email, password) 
+       VALUES (?, ?, ?, ?)`,
+      [name, number, email, password],
       function (err) {
         if (err) {
           console.error("❌ Register Error:", err.message);
           return res.status(500).json({ error: "Registration failed" });
         }
 
-        const registerId = this.lastID; // ✅ inserted register row id
+        const registerId = this.lastID;
 
-        // Hash password for login table
         bcrypt.hash(password, 10, (err, hashedPassword) => {
           if (err) {
             console.error("❌ Hash Error:", err.message);
             return res.status(500).json({ error: "Password hashing failed" });
           }
 
-          // ✅ Insert into users (login) table
           db.run(
-            `INSERT INTO users (register_id, email, password, status)
+            `INSERT INTO login (register_id, email, password, status) 
              VALUES (?, ?, ?, ?)`,
-            [registerId, email, hashedPassword, "active"],
+            [registerId, email, hashedPassword, "off"],
             (err) => {
               if (err) {
-                console.error("❌ Users Insert Error:", err.message);
+                console.error("❌ Login Insert Error:", err.message);
                 return res.status(500).json({ error: "Failed to create login entry" });
               }
 
               console.log("✅ User registered and login entry created");
-              res.json({ message: "Registration successful" });
+              res.json({ message: "Registration successful", registerId });
             }
           );
         });
@@ -51,6 +48,30 @@ router.post("/register", async (req, res) => {
     console.error("❌ Unexpected Error:", error.message);
     res.status(500).json({ error: "Server error" });
   }
+});
+
+// ✅ Fetch all registered users
+router.get("/register-users", (req, res) => {
+  db.all("SELECT * FROM register", [], (err, rows) => {
+    if (err) {
+      console.error("❌ Error fetching users:", err.message);
+      return res.status(500).json({ error: "Database error" });
+    }
+    res.json(rows);
+  });
+});
+
+// ✅ Fetch single registered user by ID
+router.get("/register/:id", (req, res) => {
+  const { id } = req.params;
+  db.get("SELECT * FROM register WHERE id = ?", [id], (err, row) => {
+    if (err) {
+      console.error("❌ Error fetching registered user:", err.message);
+      return res.status(500).json({ error: "Database error" });
+    }
+    if (!row) return res.status(404).json({ error: "User not found" });
+    res.json(row);
+  });
 });
 
 export default router;

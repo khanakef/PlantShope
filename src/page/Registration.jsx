@@ -4,16 +4,10 @@ import { useNavigate } from "react-router-dom";
 const Registration = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
+    number: "",
     email: "",
     password: "",
-    phone: "",
-    address: "",
-    dob: "",
-    gender: "",
-    city: "",
-    country: "",
-    pinCode: "",
   });
 
   const handleChange = (e) => {
@@ -32,11 +26,10 @@ const Registration = () => {
         body: JSON.stringify(formData),
       });
 
-
       if (res.ok) {
         alert("✅ Registration successful!");
         setTimeout(() => {
-          navigate("/userdata"); // redirect to blank userdata page
+          navigate("/userdata"); // redirect to userdata page
         }, 1500);
       } else {
         const errorData = await res.json();
@@ -52,14 +45,27 @@ const Registration = () => {
     <div className="container mt-5 pt-5" style={{ maxWidth: "500px" }}>
       <h2 className="text-center mb-4">Create an Account</h2>
 
-      {/* Full Name */}
+      {/* Name */}
       <div className="mb-3">
-        <label className="form-label">Full Name</label>
+        <label className="form-label">Name</label>
         <input
           type="text"
-          name="fullName"
+          name="name"
           className="form-control"
-          value={formData.fullName}
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      {/* Number */}
+      <div className="mb-3">
+        <label className="form-label">Phone Number</label>
+        <input
+          type="tel"
+          name="number"
+          className="form-control"
+          value={formData.number}
           onChange={handleChange}
           required
         />
@@ -89,101 +95,6 @@ const Registration = () => {
           onChange={handleChange}
           required
         />
-      </div>
-
-      {/* Phone */}
-      <div className="mb-3">
-        <label className="form-label">Phone</label>
-        <input
-          type="tel"
-          name="phone"
-          className="form-control"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      {/* Address */}
-      <div className="mb-3">
-        <label className="form-label">Address</label>
-        <textarea
-          name="address"
-          className="form-control"
-          rows="3"
-          value={formData.address}
-          onChange={handleChange}
-          required
-        ></textarea>
-      </div>
-
-      {/* City */}
-      <div className="mb-3">
-        <label className="form-label">City</label>
-        <input
-          type="text"
-          name="city"
-          className="form-control"
-          value={formData.city}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      {/* Country */}
-      <div className="mb-3">
-        <label className="form-label">Country</label>
-        <input
-          type="text"
-          name="country"
-          className="form-control"
-          value={formData.country}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      {/* Pin Code */}
-      <div className="mb-3">
-        <label className="form-label">Pin Code</label>
-        <input
-          type="text"
-          name="pinCode"
-          className="form-control"
-          value={formData.pinCode}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      {/* DOB */}
-      <div className="mb-3">
-        <label className="form-label">Date of Birth</label>
-        <input
-          type="date"
-          name="dob"
-          className="form-control"
-          value={formData.dob}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      {/* Gender */}
-      <div className="mb-3">
-        <label className="form-label">Gender</label>
-        <select
-          name="gender"
-          className="form-control"
-          value={formData.gender}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
       </div>
 
       {/* ✅ Register Button */}

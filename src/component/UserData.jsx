@@ -24,37 +24,31 @@ const UserData = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th>Full Name</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Number</th>
             <th>Email</th>
             <th>Password</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Pin Code</th>
-            <th>DOB</th>
-            <th>Gender</th>
+            <th>Created At</th>
+            <th>Updated At</th>
           </tr>
         </thead>
         <tbody>
           {users.length > 0 ? (
             users.map((user) => (
               <tr key={user.id}>
-                <td>{user.fullName}</td>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.number}</td>
                 <td>{user.email}</td>
                 <td>{user.password}</td>
-                <td>{user.phone}</td>
-                <td>{user.address}</td>
-                <td>{user.city}</td>
-                <td>{user.country}</td>
-                <td>{user.pinCode}</td>
-                <td>{user.dob}</td>
-                <td>{user.gender}</td>
+                <td>{user.created_at}</td>
+                <td>{user.updated_at}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="10" className="text-center">
+              <td colSpan="7" className="text-center">
                 No users found
               </td>
             </tr>
