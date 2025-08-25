@@ -8,6 +8,11 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
   const { name, number, email, password } = req.body;
 
+  // ✅ added: basic validation
+  if (!name || !number || !email || !password) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
   try {
     db.run(
       `INSERT INTO register (name, number, email, password) 
@@ -16,6 +21,12 @@ router.post("/register", async (req, res) => {
       function (err) {
         if (err) {
           console.error("❌ Register Error:", err.message);
+
+          // ✅ added: more descriptive error response
+          if (err.message.includes("UNIQUE")) {
+            return res.status(400).json({ error: "Email already exists" });
+          }
+
           return res.status(500).json({ error: "Registration failed" });
         }
 
